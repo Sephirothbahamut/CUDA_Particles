@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="Window.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Elements.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle_system.h">
+      <Filter>Headers\Particle_system</Filter>
+    </ClInclude>
+    <ClInclude Include="PS_Base.h">
+      <Filter>Headers\Particle_system</Filter>
+    </ClInclude>
+    <ClInclude Include="PS_CPU_Forces_matrix.h">
+      <Filter>Headers\Particle_system</Filter>
+    </ClInclude>
+    <ClInclude Include="PS_GPU_Forces_matrix.cuh">
+      <Filter>Headers\Particle_system</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector_extension.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Color_manip.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CUDA\Vector.h">
+      <Filter>Headers\CUDA</Filter>
+    </ClInclude>
+    <ClInclude Include="CUDA\Base.h">
+      <Filter>Headers\CUDA</Filter>
+    </ClInclude>
+    <ClInclude Include="CUDA\Matrix.h">
+      <Filter>Headers\CUDA</Filter>
+    </ClInclude>
+    <ClInclude Include="CUDA\vec2.h">
+      <Filter>Headers\CUDA</Filter>
+    </ClInclude>
+    <ClInclude Include="PS_Forces_matrix_calcs.h">
+      <Filter>Headers\Particle_system</Filter>
+    </ClInclude>
+    <ClInclude Include="PS_CPU_Nested_foreach.h">
+      <Filter>Headers\Particle_system</Filter>
+    </ClInclude>
+    <ClInclude Include="Index_range.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PS_GPU_Nested_foreach.cuh">
+      <Filter>Headers\Particle_system</Filter>
+    </ClInclude>
+    <ClInclude Include="CUDA\Launcher.h">
+      <Filter>Headers\CUDA</Filter>
+    </ClInclude>
+    <ClInclude Include="CUDA\Color_manip.h">
+      <Filter>Headers\CUDA</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{5f9ea3ac-44b3-48cf-adba-64f45a16cc19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cpp">
+      <UniqueIdentifier>{ef8a571c-f605-449c-89b0-b988e8e44c34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cu">
+      <UniqueIdentifier>{c1097548-bba6-48de-806d-65f37f54d393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Particle_system">
+      <UniqueIdentifier>{da15f1d0-9e57-47d3-b4da-f05a454a2195}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\CUDA">
+      <UniqueIdentifier>{f5870f97-502d-4e0e-893a-8e24736285cb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="PS_GPU_Forces_matrix.cu">
+      <Filter>Cu</Filter>
+    </CudaCompile>
+    <CudaCompile Include="PS_GPU_Nested_foreach.cu">
+      <Filter>Cu</Filter>
+    </CudaCompile>
+  </ItemGroup>
+</Project>
