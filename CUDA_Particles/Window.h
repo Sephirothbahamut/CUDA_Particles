@@ -65,6 +65,15 @@ class Window
 		size_t get_width()  { return window.getSize().x; }
 		size_t get_height() { return window.getSize().y; }
 
+		void print_times()
+			{
+			std::stringstream sstr;
+			sstr << "Average times:\n";
+			for (const auto& updatable : updatables) { sstr << updatable->get_name() << " - " << std::setw(15) << updatable->get_average_time() << "\n"; }
+			sstr << "_______________________________________________";
+			std::cout << sstr.str() << std::endl;
+			}
+
 	private:
 		sf::RenderWindow window;
 		std::chrono::nanoseconds delay;
@@ -126,15 +135,6 @@ class Window
 			window.draw(toggle_text);
 			window.draw(updatables_states_text);
 			window.display();
-			}
-
-		void print_times()
-			{
-			std::stringstream sstr;
-			sstr << "Average times:\n";
-			for (const auto& updatable : updatables) { sstr << updatable->get_name() << " - " << std::setw(15) << updatable->get_average_time() << "\n"; }
-			sstr << "_______________________________________________";
-			std::cout << sstr.str() << std::endl;
 			}
 
 		void update_mass_text() noexcept { mass_text.setString("Particles mass * mass: " + std::to_string(Particle_system::mass)); }

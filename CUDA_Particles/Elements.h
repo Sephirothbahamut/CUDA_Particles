@@ -31,7 +31,6 @@ struct Updatable : public sf::Drawable
 				update_impl();
 				auto tt = std::chrono::steady_clock::now() - tp;
 				average_time += tt;
-				//std::cout << get_name() << " time taken: " << tt.count() << std::endl;
 				}
 			};
 		std::chrono::nanoseconds get_average_time() const noexcept { return average_time; }
