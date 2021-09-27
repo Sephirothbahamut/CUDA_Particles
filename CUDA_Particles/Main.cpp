@@ -16,7 +16,7 @@ int main()
 	PS::init particle_system_initializer
 		{
 		//.amount{50176},
-		.amount{50000},
+		.amount{100000},
 		//.amount{512},
 		.width {wnd.get_width()},
 		.height{wnd.get_height()},
