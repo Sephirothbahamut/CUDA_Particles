@@ -17,7 +17,7 @@ namespace Particle_system
 			size_t discrete_x{static_cast<size_t>(vertex.position.x)};
 			size_t discrete_y{static_cast<size_t>(vertex.position.y)};
 
-			utils::math::vec2f velocity{velocities[velocities.get_index(discrete_x, discrete_y)]};
+			utils::CUDA::math::vec2f velocity{velocities[velocities.get_index(discrete_x, discrete_y)]};
 
 			vertex.position.x -= velocity.x;
 			vertex.position.y -= velocity.y;
@@ -36,7 +36,7 @@ namespace Particle_system
 		if (index < velocities.size())
 			{
 			//Copy value
-			utils::math::vec2f velocity{0.f, 0.f};
+			utils::CUDA::math::vec2f velocity{0.f, 0.f};
 			auto coords = velocities.get_coords(index);
 
 			for (const auto& vertex : vertices) { velocity += calc_force_at(vertex, coords.x, coords.y, mass); }
@@ -49,7 +49,7 @@ namespace Particle_system
 		size_t threads{velocities.size() < 1024 ? velocities.size() : 1024};
 		size_t blocks {velocities.size() < 1024 ? 1 : velocities.size() / 1024};
 
-		utils::CUDA::Launcher<_set_velocities>{blocks, threads}(velocities.get_device_matrix(), utils::CUDA::device_vector{vertices}, mass);
+		utils::CUDA::Launcher<_set_velocities>  {blocks, threads}(velocities.get_device_matrix(), utils::CUDA::device_vector{vertices}, mass);
 		utils::CUDA::Launcher<_apply_velocities>{blocks, threads}(velocities.get_device_matrix(), utils::CUDA::device_vector{vertices});
 		cudaDeviceSynchronize();
 		}

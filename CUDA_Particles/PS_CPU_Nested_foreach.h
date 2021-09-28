@@ -31,7 +31,7 @@ namespace Particle_system
 				}
 
 		private:
-			std::vector<utils::math::vec2f> velocities;
+			std::vector<utils::CUDA::math::vec2f> velocities;
 
 			void zero_velocities() noexcept
 				{
@@ -61,8 +61,8 @@ namespace Particle_system
 
 			void update_velocity(size_t index) noexcept
 				{
-				utils::math::vec2f velocity = velocities[index];
-				utils::math::vec2f this_thread_vertex_position{to_utils_vec2(vertices[index].position)};
+				utils::CUDA::math::vec2f velocity = velocities[index];
+				utils::CUDA::math::vec2f this_thread_vertex_position{to_utils_vec2(vertices[index].position)};
 
 				for (const auto& other_vertex : vertices) 
 					{
@@ -82,7 +82,7 @@ namespace Particle_system
 				vertices[index] = vertex;
 				};
 
-			void set_vertex_color(sf::Vertex& vertex, const utils::math::vec2f& velocity) const noexcept
+			void set_vertex_color(sf::Vertex& vertex, const utils::CUDA::math::vec2f& velocity) const noexcept
 				{
 				float hue = velocity.magnitude2();
 

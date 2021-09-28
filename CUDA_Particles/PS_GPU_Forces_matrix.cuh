@@ -15,8 +15,8 @@ namespace Particle_system
 	class CUDA_Forces_matrix : public base<utils::CUDA::pinned_allocator<sf::Vertex>>
 		{
 		public:
-			using forces_t          = utils::CUDA::matrix       <utils::math::vec2f>;
-			using device_forces_t   = utils::CUDA::device_matrix<utils::math::vec2f>;
+			using forces_t          = utils::CUDA::matrix       <utils::CUDA::math::vec2f>;
+			using device_forces_t   = utils::CUDA::device_matrix<utils::CUDA::math::vec2f>;
 			using device_vertices_t = utils::CUDA::device_vector<sf::Vertex>;
 
 			CUDA_Forces_matrix(const init& init) noexcept : base{init, sf::Color::Green},

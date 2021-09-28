@@ -15,13 +15,13 @@ namespace Particle_system
 		size_t index{(blockIdx.x * blockDim.x) + threadIdx.x};
 		if (index < vertices.size())
 			{
-			utils::math::vec2f this_pos{to_utils_vec2(vertices[index].position)};
+			utils::CUDA::math::vec2f this_pos{to_utils_vec2(vertices[index].position)};
 
-			utils::math::vec2f velocity{velocities[index]};
+			utils::CUDA::math::vec2f velocity{velocities[index]};
 			
 			for (const auto& other_vertex : vertices)
 				{
-				utils::math::vec2f other_pos{to_utils_vec2(other_vertex.position)};
+				utils::CUDA::math::vec2f other_pos{to_utils_vec2(other_vertex.position)};
 				velocity += calc_force(this_pos, other_pos, mass, mass);
 				}
 			velocities[index] = velocity;
@@ -35,10 +35,10 @@ namespace Particle_system
 
 		bool vertex_exists{index < vertices.size()};
 
-		utils::math::vec2f this_pos;
+		utils::CUDA::math::vec2f this_pos;
 		if (vertex_exists) { this_pos = to_utils_vec2(vertices[index].position); }
 
-		utils::math::vec2f velocity;
+		utils::CUDA::math::vec2f velocity;
 		if (vertex_exists) { velocity = velocities[index]; }
 
 		extern __shared__ sf::Vertex current_other_vertices_data[];
@@ -48,7 +48,7 @@ namespace Particle_system
 			{
 			for (const auto& other_vertex : smem_vertices)
 				{
-				utils::math::vec2f other_pos{to_utils_vec2(other_vertex.position)};
+				utils::CUDA::math::vec2f other_pos{to_utils_vec2(other_vertex.position)};
 				velocity += calc_force(this_pos, other_pos, mass, mass);
 				}
 			});
@@ -57,7 +57,7 @@ namespace Particle_system
 		}
 
 	__device__
-	void _set_vertex_color(sf::Vertex& vertex, const utils::math::vec2f& velocity)
+	void _set_vertex_color(sf::Vertex& vertex, const utils::CUDA::math::vec2f& velocity)
 		{
 		float hue{velocity.magnitude2()};
 		clamp(hue, 0.f, 240.f);

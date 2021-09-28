@@ -16,8 +16,8 @@ namespace Particle_system
 	class CUDA_Nested_foreach : public base<utils::CUDA::pinned_allocator<sf::Vertex>>
 		{
 		public:
-			using forces_t          = utils::CUDA::vector       <utils::math::vec2f>;
-			using device_forces_t   = utils::CUDA::device_vector<utils::math::vec2f>;
+			using forces_t          = utils::CUDA::vector       <utils::CUDA::math::vec2f>;
+			using device_forces_t   = utils::CUDA::device_vector<utils::CUDA::math::vec2f>;
 			using device_vertices_t = utils::CUDA::device_vector<sf::Vertex>;
 
 			CUDA_Nested_foreach(const init& init) noexcept : base{init, sf::Color::Green},

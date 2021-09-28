@@ -5,12 +5,12 @@
 
 #include "../CUDA/Base.h"
 
-namespace utils::math
+namespace utils::CUDA::math
 	{
 	template <typename T> class vec2;
 	}
 
-namespace utils::math
+namespace utils::CUDA::math
 	{
 	//fast typenames
 	using vec2i   = vec2<int>;

@@ -40,12 +40,12 @@ namespace Particle_system
 				}
 
 		private:
-			utils::matrix_dyn<utils::math::vec2f> velocities;
+			utils::matrix_dyn<utils::CUDA::math::vec2f> velocities;
 
 			void zero_velocities() noexcept { for (auto& velocity : velocities) { velocity.x = 0; velocity.y = 0; } }
 			void set_velocities() noexcept
 				{
-				namespace utm = utils::math;
+				namespace utm = utils::CUDA::math;
 
 				if constexpr (type == CPU_Type::Sequential)
 					{
@@ -70,7 +70,7 @@ namespace Particle_system
 
 					std::for_each(std::execution::par, indices.begin(), indices.end(), [&velocities = this->velocities, &vertices = this->vertices] (size_t index)
 						{
-						utils::math::vec2f velocity{0, 0};
+						utils::CUDA::math::vec2f velocity{0, 0};
 						size_t x{velocities.get_x(index)};
 						size_t y{velocities.get_y(index)};
 
@@ -81,7 +81,7 @@ namespace Particle_system
 				}
 			void apply_velocities() noexcept
 				{
-				namespace utm = utils::math;
+				namespace utm = utils::CUDA::math;
 
 				if constexpr (type == CPU_Type::Sequential)
 					{
@@ -95,7 +95,7 @@ namespace Particle_system
 
 			void apply_force(sf::Vertex& vertex) noexcept
 				{
-				namespace utm = utils::math;
+				namespace utm = utils::CUDA::math;
 				size_t discrete_x = static_cast<size_t>(vertex.position.x);
 				size_t discrete_y = static_cast<size_t>(vertex.position.y);
 

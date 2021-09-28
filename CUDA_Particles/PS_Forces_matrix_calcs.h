@@ -23,9 +23,9 @@ inline void clamp_vertex(sf::Vertex& vertex, float width, float height)
 	}
 
 __host__ __device__
-inline utils::math::vec2f calc_force(const utils::math::vec2f& particle_position, const utils::math::vec2f& target_position, float mass_a, float mass_b) noexcept
+inline utils::CUDA::math::vec2f calc_force(const utils::CUDA::math::vec2f& particle_position, const utils::CUDA::math::vec2f& target_position, float mass_a, float mass_b) noexcept
 	{
-	namespace utm = utils::math;
+	namespace utm = utils::CUDA::math;
 	utm::vec2f this_to_current_vector{target_position - particle_position};
 	float dist = this_to_current_vector.magnitude();
 	float strength = dist < std::numeric_limits<float>::epsilon() ? 0.f : /*0.000000000066742f * */ mass_a * mass_b / dist;
@@ -33,9 +33,9 @@ inline utils::math::vec2f calc_force(const utils::math::vec2f& particle_position
 	}
 
 __host__ __device__
-inline utils::math::vec2f calc_force_at(const sf::Vertex& this_vertex, size_t x, size_t y, float mass)
+inline utils::CUDA::math::vec2f calc_force_at(const sf::Vertex& this_vertex, size_t x, size_t y, float mass)
 	{
-	namespace utm = utils::math;
+	namespace utm = utils::CUDA::math;
 
 	utm::vec2f other{static_cast<float>(x), static_cast<float>(y)};
 	utm::vec2f self{std::floorf(this_vertex.position.x), std::floorf(this_vertex.position.y)};
